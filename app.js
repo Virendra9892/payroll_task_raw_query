@@ -1,17 +1,38 @@
 var createError = require('http-errors');
 var express = require('express');
+var app = express();
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const models = require("./models")
 var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
+const swaggerUi = require('swagger-ui-express');
+const swagger = require('./utils/swagger');
 
-var app = express();
+// const option = {
+//      definition:{
+//       operapi:'3.0.0',
+//       info: {
+//         title:"Payroll task",
+//         version:"1.0.0"
+//       },
+//       servers:[
+//         {
+//           url:"http://localhost:3000/"
+//         }
+//       ]
+//      },
+//      apis:["./app.js"]
+// }
+// let swaggerSpec = swaggerJsDoc(option);
+// app.use("/api-docs",swaggerUi.serve,swaggerUi.setup(swaggerSpec))
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swagger.swaggerSpec));
 
 app.use(logger('dev'));
 app.use(express.json());
