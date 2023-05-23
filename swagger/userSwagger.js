@@ -1,7 +1,7 @@
 // add-user
 /**
  * @swagger
- * /api/users/:
+ * /api/user/register:
  *  post:
  *    tags:
  *      - User

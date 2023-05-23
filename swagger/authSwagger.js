@@ -2,7 +2,7 @@
 
 /**
  * @swagger
- * /api/auth/login:
+ * /api/userAuth/login:
  *  post:
  *    tags:
  *      - Auth
