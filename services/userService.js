@@ -5,14 +5,16 @@ const pagination = require("../utils/pagination")
 
 
 exports.registerUser = async(data)=>{
-    let exist = await models.sequelize.query(`select * from user where email = ${data.email}`);
+    // let exist = await models.sequelize.query(`select * from users where email = ${data.email}`);
+    let exist = await models.users.findOne({where:{email:data.email}});
     if(exist){
         return ({status:400,sucess:false,message:"User Already Exist"});
     }
     else{
         let salt = await bcrypt.genSalt(10);
         data.password = await bcrypt.hash(data.password,salt);
-        let resp = await models.sequelize.query(`INSERT INTO user(name,email,password,roleId) VALUES(${data.name,data.email,data.password,data.roleId})`);
+        let resp = await models.sequelize.query(`INSERT INTO users(name,email,password,roleId) VALUES(${data.name},${data.email},${data.password},${data.roleId})`);
+        // let resp = await models.users.create(data)
         if(resp){
             return ({status:201,sucess:true,message:"User Created Sucessfully"});
         }

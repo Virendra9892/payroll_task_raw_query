@@ -14,7 +14,7 @@
  *        required: true
  *        schema:
  *          type: object
- *          required: [ name, email, password, role_id ]
+ *          required: [ name, email, password, roleId ]
  *          properties:
  *            name:
  *              type: string
@@ -28,15 +28,10 @@
  *              type: string
  *              description: password of user
  *              example: '#Testing12345'
- *            phone:
- *              type: string
- *              description: otp for user
- *              example: "1256456434"
- *            role_id:
- *              type: string
+ *            roleId:
+ *              type: integer
  *              description: role id
- *              example: 643fdbc8bef5cc00298eef73
- *            isActive:
+ *              example: 1
  *    responses:
  *      '200':
  *        description: A successful response
@@ -56,7 +51,7 @@
 
 /**
  * @swagger
- * /api/users/:
+ * /api/user/getAllUser:
  *  get:
  *    tags:
  *      - User
@@ -94,7 +89,7 @@
 
 /**
  * @swagger
- * /api/users/user-by-Id/{id}:
+ * /api/user/getUserById:
  *  get:
  *    tags:
  *      - User
@@ -126,7 +121,7 @@
 
 /**
  * @swagger
- * /api/users/update-user/{id}:
+ * /api/user/updateUser/{id}:
  *  put:
  *    tags:
  *      - User
@@ -144,7 +139,7 @@
  *      required: true
  *      schema:
  *          type: object
- *          required: [ name, email, password, otp, role, isActive ]
+ *          required: [ name, email, password, otp, role ]
  *          properties:
  *            name:
  *              type: string
@@ -159,17 +154,13 @@
  *              description: password of user
  *              example: #Testing12345
  *            otp:
- *              type: string
+ *              type: integer
  *              description: otp for user
  *              example: "1234"
  *            role:
- *              type: string
+ *              type: integer
  *              description: role id
- *              example: 643fdbc8bef5cc00298eef73
- *            isActive:
- *              type: Boolean
- *              description: check user is active or deleted.
- *              example: true
+ *              example: 1
  *    responses:
  *      '200':
  *        description: A successful response
@@ -189,7 +180,7 @@
 
 /**
  * @swagger
- * /api/users/delete-one-user/{id}:
+ * /api/user/deleteUser/{id}:
  *  delete:
  *    tags:
  *      - User
@@ -276,35 +267,6 @@
 //  */
 
 // restore-user
-
-/**
- * @swagger
- * /api/users/restore-user/{id}:
- *  get:
- *    tags:
- *      - User
- *    summary: API use for restoring user..
- *    parameters:
- *    - name: "id"
- *      in: "path"
- *      description: "Id of user to restore"
- *      required: true
- *      type: "string"
- *    responses:
- *      '200':
- *        description: A successful response
- *      '404':
- *         description: Product
- *         schema:
- *           type: object
- *           description: not found
- *           properties:
- *             message:
- *               title: message
- *               type: string
- *               example: not found
- */
-
 
 // get recruiter/candidate
 
